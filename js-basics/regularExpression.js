@@ -120,16 +120,77 @@ let catStr = "cat";
 let batStr = "bat";
 let matStr = "mat";
 
-let bgRegex = /[a-e]at/
+let matchLetterOfTheAlphabet = /[a-e]at/
 
-catStr.match(bgRegex);
-batStr.match(bgRegex);
-matStr.match(bgRegex);
+catStr.match(matchLetterOfTheAlphabet);
+batStr.match(matchLetterOfTheAlphabet);
+matStr.match(matchLetterOfTheAlphabet);
 
 // 9) Match letters and numbers of the Alphabet. We can combine any combination to match the regex pattern.
 
 let jennyStr = "Jenny8675309";
-let myRegex = /[a-z0-9]ig/;
+let myRegex = /[a-z0-9]/gi;
 
-jennyStr.match(myString);
+console.log(jennyStr.match(myRegex));
 
+// 10) Match Single Characters Not specificed.
+// So far we created a set of characters you want to match but you can also create a set that you DO NOT want to match. They are termed as negated characters.
+
+// In order to create a negation set, you denote it using ^ after the opening bracket.
+
+let negationStr = "3 Blind mice.";
+let negationRegex = /[^aeiou1-9]/ig;
+console.log(negationStr.match(negationRegex));
+
+
+// 11) Match Characters that Occur more than one or more times.
+
+
+// Sometimes, you want to find a character that appears more than once in a row. Meaning, it is atleast once in the string and may be repeated. You can use the + character to check if the character is repeating(should be continious).
+
+/* 
+    for example, if we use /a+/g would find one match in "abc" and would return ["a"]. In case of "aabc", it would return ["aa"] and in case of "abab", it would return ["a","a"]; 
+*/
+
+// 12) Match Operator that Occur Zero or more time.
+
+// Example:
+
+let soccerWord = "goooooal";
+let gPhrase = "gut feeling";
+let oPhrase = "over the moon";
+let goRegex = /go*/;
+
+console.log(soccerWord.match(goRegex));
+console.log(gPhrase.match(goRegex));
+
+let chewieQuote = "Aaaaaaargh";
+let chewieRegex = /Aa*/;
+console.log("Chewie result",chewieQuote.match(chewieRegex));
+
+
+// 13) Find characters with Lazy Matching. 
+
+// In regular expression, a greedy match finds the longest possible match. The alternative is lazy match.
+
+// Example: You can apply /t[a-z]*i to "titanic" and it will return titani because regular expression are by default greedy and returns longest possible match.In order to find the shortest match, use the ? character.
+
+
+// 14) Match all letters and numbers:
+
+// There is a shortcut \w which is equivalent to [A-Za-z0-9_].
+
+
+let longHand = /[A-Za-z0-9_]+/;
+let shortHand = /w+/;
+let numbers = "42";
+let varNames = "important_var";
+
+longHand.test(numbers);
+shortHand.test(numbers);
+longHand.test(varNames);
+shortHand.test(varNames);
+
+console.log("Try it out", varNames.match(shortHand));
+
+// 15) 
