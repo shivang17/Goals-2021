@@ -161,8 +161,8 @@ let gPhrase = "gut feeling";
 let oPhrase = "over the moon";
 let goRegex = /go*/;
 
-console.log(soccerWord.match(goRegex));
-console.log(gPhrase.match(goRegex));
+console.log(soccerWord.match(goRegex)); //gooooo
+console.log(gPhrase.match(goRegex)); // g
 
 let chewieQuote = "Aaaaaaargh";
 let chewieRegex = /Aa*/;
@@ -193,4 +193,81 @@ shortHand.test(varNames);
 
 console.log("Try it out", varNames.match(shortHand));
 
-// 15) 
+// 15) Not matching all numbers and characters: \W
+
+//16) Matching the numbers: \d
+//17) Not matcing the numbers: \D
+
+
+
+//18)
+//19)
+
+//20) Positive and Negative Lookahead: 
+
+/* 
+    We can use lookaheads (also can be used to find lookbehind, combinedly known as lookaround).
+
+    1) Positive lookahead: It will search the pattern but won't match. (?...)
+    2) Negative lookahead: Element in search is not present(?!...)
+
+
+    Let's clarify with an example:
+
+    let quit = "qu";
+    let noquit = "qt";
+    let quRegex = /q(?=u)/;
+    let qRegex = /q(?!u)/;
+
+    quit.match(quRegex); // returns ["q"]
+    noquit.match(qRegex); // returns ["q"]
+*/
+
+// More practical approach is to check for two or more patterns:
+
+let password = "abc123";
+let checkPass = /(?=\w{3,6})(?=\D*\d)/;
+console.log(checkPass.test(password));
+
+
+// Check for mixed grouping of characters: If we want to check for groups of characters using a Regular Expression, we use ().
+
+/* 
+    Example:
+    let testStr = "Pumpkin";
+    let testRegex = /P(engu | umpk)in/
+    testRegex.test(testStr);
+
+*/
+
+/* 
+    Reuse Patterns using capture groups.
+
+    We can use the repeated sub string using paranthesis ()
+
+    To specify where that repeat string will appear, you use a backslash (\) and then a number. This number starts at 1 and increases with each additional capture group you use. An example would be \1 to match the first group.
+
+    let repeatStr = "regex regex";
+    let repeatRegex  = /(\w+)\s\1/;
+
+    repeatRegex.test(repeatStr); // returns true
+    repeatStr.match(repeatRegex); // returns ["regex, regex", "regex"]; // returns an array with the string it matches, along with its capture group.
+
+
+
+*/
+
+//Use capture group to search and replace
+
+let wrongText = "The sky is pink";
+let pinkRegex = /pink/;
+console.log(wrongText.replace(pinkRegex, "blue"));
+console.log("Did sky become blue now?", wrongText);
+
+
+// You can also access capture groups in the replacement string with dollar signs ($).
+
+"Code Camp".replace(/(\w+)\s()/)
+
+
+// Remove white spaces from start and end.
