@@ -337,7 +337,7 @@ let temp = thermos.temperature;
 console.log(temp);
 thermos.temperature = 26;
 temp = thermos.temperature;
-console.log("Firse?",temp);
+console.log("Again?",temp);
 
 
 // Importing and exporting files/function across various javascript files in the codebase.
