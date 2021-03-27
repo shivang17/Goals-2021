@@ -62,6 +62,23 @@ return finalArr;
 
 console.log(largestOfFour([[17, 23, 25, 12], [25, 7, 34, 48], [4, -10, 18, 21], [-72, -3, -17, -10]]));
 
+// OR
+
+function largestOfFour(arr){
+    var results = [];
+    for(var i = 0 ; i< arr.length; i++){
+        var largestNumber = arr[i][0];
+        for(var j = 1; j < arr[i].length; j++){
+            if(arr[i][j] > largestNumber){
+                largestNumber = arr[i][j];
+            }
+        }
+        results[i] = largestNumber
+    }
+    return results;
+}
+
+
 //5) Confirm the Ending
 
 /* 
@@ -70,7 +87,7 @@ console.log(largestOfFour([[17, 23, 25, 12], [25, 7, 34, 48], [4, -10, 18, 21], 
 This challenge can be solved with the .endsWith() method, which was introduced in ES2015. But for the purpose of this challenge, we would like you to use one of the JavaScript substring methods instead.
 
 */
-// Logic 1: Applying slice on the string starting with the difference of lenght of str and length of the target. If that is equal to the target, we confirm it is true.
+// Logic 1: Applying slice on the string starting with the difference of length of str and length of the target. If that is equal to the target, we confirm it is true.
 
 function confirmEnding(str, target){
 
@@ -91,7 +108,7 @@ function confirmEnding(str, target){
 // 6) Repeat a string: Repeat a given string str (first argument) for num times (second argument). Return an empty string if num is not a positive number. For the purpose of this challenge, do not use the built-in .repeat() method.
 
 
-function repeatStringNum(str){
+function repeatStringNum(str, num){
     let finalStr = "";
     for(let i=0; i< num;i++){
         finalStr += str;
@@ -104,7 +121,7 @@ function repeatStringNum(str){
 
 
 function truncateString(str, num){
-    if(num>= str.length){
+    if(num >= str.length){
         return str;
     }else{
         return str.slice(0,num) + "...";
