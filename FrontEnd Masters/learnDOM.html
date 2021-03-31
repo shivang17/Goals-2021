@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Object Model</title>
+</head>
+<body>
+     <li class="js-target">Unchanged</li>
+    <li class="js-target">Unchanged</li>
+    <li>Won't change</li>
+    <li class="js-target">Unchanged</li>
+    <li class="js-target">Unchanged</li>
+
+    <button class="event-button">Click me</button>
+    <input class="input-to-copy" placeholder="type into me">
+    <p class="p-to-copy">Nothing happened yet</p>
+    <div class="button-container">
+        <button>1</button>
+        <button>2</button>
+        <button>3</button>
+        <button>4</button>
+        <button>5</button>
+    </div>
+    <script>
+        const elementsToChange = document.querySelectorAll('.js-target');
+        for(let i = 0 ; i< elementsToChange ; i++){
+
+            const currentElement = elementsToChange[i];
+            currentElement.innerHTML = "Modified using JavaScript";
+        }
+
+        const input = document.querySelector('.input-to-copy');
+        const paragraph = document.querySelector('.p-to-copy')
+        input.addEventListener('keyup', function(){ 
+                paragraph.innerText = input.value;
+        })
+
+        input.addEventListener('change',function(){
+            paragraph.style.backgroundColor = input.value;
+        })
+
+        //Here, the event is applied on entire div, hence the alert will trigger anywhere in div. In order to avoid that, we should first check if the tag clicked is a button
+        /* const buttonClick = document.querySelector('.button-container');
+        buttonClick.addEventListener('click',function(event){
+            alert(`You have clicked button ${event.target.innerText}`);
+        })
+     */
+
+        const buttonClick = document.querySelector('.button-container');
+        buttonClick.addEventListener('click',function(event){
+            if(event.target.tagName === "BUTTON"){
+                event.target.innerText = 'CLICKED';
+            }
+
+            event.stopPropagation()
+        })
+    </script>
+
+
+   
+
+</body>
+</html>
