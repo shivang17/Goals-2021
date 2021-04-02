@@ -31,3 +31,18 @@ doStuff("B"); // Will execute the function with B as value
 console.log(B); // Will not work, no variable declared named B
 console.log(C); // Declared only inside the scope, will not work.
 console.log(F); // Global scope, will give final value if it is changed anywhere.
+
+
+const array = [
+
+    {x: "foo", y: 8 },
+    {x: "bar", y: 3},
+    {x: "baz", y: 7}
+
+];
+
+const foo = array.reduce((a,b) => ({
+    ...a, [b.x]: b.y,
+}),{});
+
+console.log(foo);
