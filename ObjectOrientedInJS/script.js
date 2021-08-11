@@ -7,7 +7,7 @@
 
 // We will be using functions, objects, and two special keywords "this" and "new".
 
-// When you run a function in JS, there are two special keywords created for that function.
+// When you run a function in JS, there are two special keywords created for that function: arguments and this.
 
 function first() {
     console.log(typeof arguments);
@@ -29,7 +29,7 @@ console.log(name);
 
 //If you try to access variable which is NOT defined, it will give you an error.
 
-// Difference between array-like-objects and array is that 
+// Difference between array-like-objects and array is that: array-like objects will not have ability to use of the array methods like map, reduce, filter etc.
 
 //Value of keyword this is determined when the function runs.
 
@@ -57,7 +57,10 @@ console.log(global.name);
 
 // strict-mode will ensure that we accidently do not override or accidently create global variables. 
 
-"use strict";
+"use strict"; // -> Works only in browsers
+// It will restrict the value of keyword this to not be the global object like window in case of browsers
+
+// this === undefined when use strict is used.
 
 
 function second() {
@@ -66,11 +69,64 @@ function second() {
 
 console.log(second());
 
+// Rule 2: Implicit(It's just the way it is)/Object Binding rule
+
+
 // If the keyword this is created inside of an object, it will refer to the closest parent object. 
 
 var obj = {
     firstName: "Shivang",
-    whoami : this
+    whoami : function() {
+        return this;
+    }
 }
 
-console.log(obj.whoami);
+console.log(obj.whoami());
+
+var obj2 = {
+    firstName: "Shivang",
+    moreInfo: {
+        homeState: "BVN",
+        displayInfo : function() {
+             return this.firstName + this.homeState;
+        }
+    } 
+}
+
+console.log(obj2.moreInfo.displayInfo());
+// undefiendBVN because this refers to the closest parent object
+
+// Rule 3: Explicit rule. You can use call, apply, and bind 
+
+/* var instructor = {
+    firstName : "Shivang",
+    sayHi: function(){
+        return this;
+    }
+} */
+// Method is function attached to an object.
+
+/* var instructor2 = {
+    firstName: "Shreyes",
+    sayHi : function() {
+        return this;
+    }
+} */
+
+// We are making the function repetitive, we can give control of function to the generic object by using call apply and bind.
+
+
+function sayHi() {
+    return this.firstName;
+}
+
+var instructor = {
+    firstName: "Shivang"
+};
+
+var instructor2 = {
+    firstName: "Shreyesh"
+};
+
+console.log(sayHi.call(instructor));
+console.log(sayHi.call(instructor2));
